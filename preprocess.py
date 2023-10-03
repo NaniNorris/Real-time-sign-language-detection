@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from tensorflow import image
 from tensorflow.keras.utils import to_categorical
+import tensorflow as tf
 
 def get_interesting_idx():
     """"
@@ -31,7 +32,7 @@ class load_data:
         self.ROWS_PER_FRAME = 543
         self.data_columns = ["x", "y", "z"]
 
-    def load_relavent_data(self,source,num_classes,sep_by,method='nearest'):
+    def load_relavent_data(self,source,num_classes,sep_by,method='nearest',scale='std'):
         """
         Args:
             source (str): should be path combined with sign 
@@ -51,11 +52,19 @@ class load_data:
         data = np.where(np.isnan(data),0,data)
         data = data[:,self.idx,:]
         data = image.resize(data,self.shape[:2],method=method)
+        if scale == "Std":
+            mean = tf.reduce_mean(data,axis=(1,0),keepdims=True)
+            std = tf.math.reduce_std(data,axis=(0,1),keepdims=True)
+            data = (data-mean)/std
+        elif scale == "Min-Max":
+            min = tf.reduce_min(data,axis=(0,1),keepdims=True)
+            max = tf.reduce_max(data,axis=(0,1),keepdims=True)
+            data = (data-min)/(max-min)
         label = to_categorical(sign,num_classes=num_classes)
         self.data = data
         return self.data,label
     
-    def load_no_sign_data(self,array,method='nearest'):
+    def load_no_sign_data(self,array,method='nearest',scale='std'):
         """
         Args:
             array (numpy): 3D array of landmarks datapoints
@@ -66,6 +75,14 @@ class load_data:
         """
         array = array[:,self.idx,:]
         array = image.resize(array,self.shape[:2],method=method)
+        if scale == "Std":
+            mean = tf.reduce_mean(array,axis=(1,0),keepdims=True)
+            std = tf.math.reduce_std(array,axis=(0,1),keepdims=True)
+            array = (array-mean)/std
+        elif scale == "Min-Max":
+            min = tf.reduce_min(array,axis=(0,1),keepdims=True)
+            max = tf.reduce_max(array,axis=(0,1),keepdims=True)
+            array = (array-min)/(max-min)
         return array
     
     
