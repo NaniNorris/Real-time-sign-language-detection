@@ -17,7 +17,7 @@ To prepare the data for training, the following preprocessing steps were perform
 
 # Model Architecture
 The model architecture employed for sign language recognition is a Convolutional Neural Network (CNN), possibly based on ResNet or a similar architecture.
-
+#
 ![image](https://github.com/NaniNorris/Real-time-sign-language-detection/assets/111329357/aec61826-f06e-4a55-9aa0-0ff215fda803)
 
 
