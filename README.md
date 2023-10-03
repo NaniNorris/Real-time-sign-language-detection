@@ -18,7 +18,17 @@ To prepare the data for training, the following preprocessing steps were perform
 # Model Architecture
 The model architecture employed for sign language recognition is a Convolutional Neural Network (CNN), possibly based on ResNet or a similar architecture.
 #
-![image](https://github.com/NaniNorris/Real-time-sign-language-detection/assets/111329357/aec61826-f06e-4a55-9aa0-0ff215fda803)
+![image](https://github.com/NaniNorris/Real-time-sign-language-detection/assets/111329357/aec61826-f06e-4a55-9aa0-0ff215fda803) 
+
+#### Traning result
+![image](https://github.com/NaniNorris/Real-time-sign-language-detection/assets/111329357/b23e0b1c-d9f4-4fc8-959c-f623b27b6546)
+
+
+
+# PS. Additional info
+- Open test notebook to experiance the real time sign detection.(take a pause beteween signs)
+- The following signs are supported (wait,apple,go,bad,face,who,thankyou,like,happy,all,sleepy,dad,why,mom,yes,for,hello,after,car)
+
 
 
 
